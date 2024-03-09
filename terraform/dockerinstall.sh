@@ -20,3 +20,8 @@ su - $USER -c 'id -nG'
 
 sudo chown root:docker /var/run/docker.sock
 
+git config --global user.email "chaitrasradha@gmail.com"
+git config --global user.name "Chaitraradha"
+git add .
+git commit -m "backup"
+git push https://Chaitraradha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@github.com/your-repository.git main
