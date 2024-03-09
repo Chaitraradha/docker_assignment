@@ -49,7 +49,7 @@ pipeline {
             }
             steps {
                 script {
-                    def plan = readFile 'docker_assignment/terraform/tfplan.txt'
+                    def plan = readFile 'tfplan.txt' // Fixed file path
                     input message: "Do you want to apply the plan?",
                           parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                 }
@@ -61,10 +61,11 @@ pipeline {
                 not { equals expected: true, actual: params.destroy }
             }
             steps {
-                dir('docker-assignment/terraform') {
+                dir('docker_assignment/terraform') { // Corrected directory name
                     sh 'terraform apply -input=false tfplan'
                 }
             }
         }
     }
 }
+
