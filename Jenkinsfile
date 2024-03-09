@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh 'rm -rf docker_assignment' 
-                sh 'git clone "https://github.com/Chaitraradha/docker_assignment.git"'
+                sh 'git clone "https://github.com/tarundanda147/assignment-docker.git"'
             }
         }
 
@@ -49,7 +49,7 @@ pipeline {
             }
             steps {
                 script {
-                    def plan = readFile 'tfplan.txt' // Fixed file path
+                    def plan = readFile 'docker_assignment/terraform/tfplan.txt'
                     input message: "Do you want to apply the plan?",
                           parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                 }
@@ -61,7 +61,7 @@ pipeline {
                 not { equals expected: true, actual: params.destroy }
             }
             steps {
-                dir('docker_assignment/terraform') { // Corrected directory name
+                dir('docker_assignment/terraform') {
                     sh 'terraform apply -input=false tfplan'
                 }
             }
