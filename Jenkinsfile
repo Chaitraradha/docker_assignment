@@ -65,6 +65,17 @@ pipeline {
                     sh 'terraform apply -input=false tfplan'
                 }
             }
+            stage('Destroy') {
+            when {
+                expression { params.destroy }
+            }
+            steps {
+                input message: 'Do you want to destroy the infrastructure?',
+                      ok: 'Destroy'
+                dir('destroy_Assignment/terraform') {
+                    sh 'terraform destroy -auto-approve'
+                }
+            }
         }
     }
 }
