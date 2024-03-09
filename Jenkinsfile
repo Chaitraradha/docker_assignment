@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'rm -rf docker_assignment.git' 
+                sh 'rm -rf docker_assignment' 
                 sh 'git clone "https://github.com/Chaitraradha/docker_assignment.git"'
             }
         }
