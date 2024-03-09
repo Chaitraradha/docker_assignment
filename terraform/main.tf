@@ -62,8 +62,8 @@ resource "aws_security_group" "all_traffic" {
 }
 
 resource "aws_instance" "test_first" {
-  ami           = "ami-0ba259e664698cbfc"
-  instance_type = "t2.medium"
+  ami           = "ami-03bb6d83c60fc5f7c"
+  instance_type = "t2.micro"
   key_name      = "ubuntu"
   vpc_security_group_ids = [aws_security_group.all_traffic.id]
   subnet_id     = aws_subnet.example_subnet.id
