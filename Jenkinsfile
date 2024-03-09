@@ -16,14 +16,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'rm -rf assignment-docker.git' 
+                sh 'rm -rf docker_assignment.git' 
                 sh 'git clone "https://github.com/Chaitraradha/docker_assignment.git"'
             }
         }
 
         stage('Terraform Init') {
             steps {
-                dir('assignment-docker/terraform') {
+                dir('docker_assignment/terraform') {
                     script {
                         sh 'terraform init'
                     }
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                dir('assignment-docker/terraform') {
+                dir('docker_assignment/terraform') {
                     script {
                         sh "terraform plan -input=false -out=tfplan"
                         sh 'terraform show -no-color tfplan > tfplan.txt'
