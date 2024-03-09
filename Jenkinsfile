@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh 'rm -rf assignment-docker.git' 
-                sh 'git clone "https://github.com/tarundanda147/assignment-docker.git"'
+                sh 'git clone "https://github.com/Chaitraradha/docker_assignment.git"'
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
                 not { equals expected: true, actual: params.destroy }
             }
             steps {
-                dir('assignment-docker/terraform') {
+                dir('docker_assignment/terraform') {
                     sh 'terraform apply -input=false tfplan'
                 }
             }
